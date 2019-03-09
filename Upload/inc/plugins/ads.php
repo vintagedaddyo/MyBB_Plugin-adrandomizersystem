@@ -33,18 +33,26 @@ $plugins->add_hook("admin_load", "ads_admin");
 
 function ads_info()
 {
-	 // need to localize
+    global $lang;
 
-	return array(
-		"name" => "Ad Randomizer system",
-		"description" => "This Plugin will display an ad on the main page from a database",
-		"website" => "http://community.mybb.com/user-6029.html",
-		"author" => "Nitemare & updated by Vintagedaddyo",
-		"authorsite" => "http://community.mybb.com/user-6029.html",
-		"version" => "5.0.3",
-		"guid" => "80d9be40af59e71edb421b93e820b10f",
-		"compatibility" => "18*"
-	);
+    $lang->load("ads");
+
+    $lang->ads_PDesc = '<form action="https://www.paypal.com/cgi-bin/webscr" method="post" style="float:right;">' .
+        '<input type="hidden" name="cmd" value="_s-xclick">' .
+        '<input type="hidden" name="hosted_button_id" value="AZE6ZNZPBPVUL">' .
+        '<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">' .
+        '<img alt="" border="0" src="https://www.paypalobjects.com/pl_PL/i/scr/pixel.gif" width="1" height="1">' .
+        '</form>' . $lang->ads_PDesc;
+
+    return Array(
+        'name' => $lang->ads_PName,
+        'description' => $lang->ads_PDesc,
+        'website' => $lang->ads_PWeb,
+        'author' => $lang->ads_PAuth,
+        'authorsite' => $lang->ads_PAuthSite,
+        'version' => $lang->ads_PVer,
+        'compatibility' => $lang->ads_PCompat
+    );
 }
 
 // plugin installation
