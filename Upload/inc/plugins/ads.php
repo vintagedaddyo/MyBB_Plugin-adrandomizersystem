@@ -6,7 +6,7 @@ Ad Randomizer system
 Created by Nitemare
 http://www.nitemare.ca
 
-Releace date: 16th September 2007
+Release date: 16th September 2007
 
 edited by: vintagedaddyo
 http://community.mybb.com/user-6029.html
@@ -158,6 +158,8 @@ function ads_globals()
 function ads_nav(&$sub_menu)
 {
 	global $mybb;
+
+    //if($mybb->usergroup['cancp'])
 	if (is_super_admin((int)$mybb->user['uid']))
 	{
 		$sub_menu['310'] = array(
@@ -173,6 +175,8 @@ function ads_nav(&$sub_menu)
 function ads_actionhandler(&$actions)
 {
 	global $mybb;
+
+    //if($mybb->usergroup['cancp'])	
 	if (is_super_admin((int)$mybb->user['uid']))
 	{
 		$actions['ads'] = array(
@@ -188,6 +192,7 @@ function ads_admin()
 {
 	global $mybb, $db, $page, $lang;
 	require_once ("../inc/functions_time.php");
+
 
 	if ($page->active_action != "ads")
 	{
@@ -221,6 +226,11 @@ function ads_admin()
 			{
 				$mode = 2;
 			}
+			
+            if($mybb->input['max'] == '')
+            {
+            $mybb->input['max'] = '0';	
+            }
 
 			$stuff = Array(
 				"code" => $db->escape_string($mybb->input['code']) ,
@@ -271,7 +281,12 @@ function ads_admin()
 			{
 				$mode = 2;
 			}
-
+			
+            if($mybb->input['max'] == '')
+            {
+            $mybb->input['max'] = '0';	
+            }
+            
 			$stuff = Array(
 				"code" => $db->escape_string($mybb->input['code']) ,
 				"max" => $mybb->input['max'],
