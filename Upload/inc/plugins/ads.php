@@ -22,7 +22,7 @@ if (!defined('IN_MYBB'))
 	die('This file cannot be accessed directly.');
 }
 
-// ad hooks
+// add hooks
 
 $plugins->add_hook("global_start", "ads_globals");
 $plugins->add_hook("admin_config_menu", "ads_nav");

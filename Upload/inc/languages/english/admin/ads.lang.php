@@ -11,7 +11,7 @@ Release date: 16th September 2007
 edited by: vintagedaddyo
 http://community.mybb.com/user-6029.html
 
-last edited: 6th March 2019
+last edited: 9th March 2019
 
 ************************************************/
 
@@ -27,6 +27,31 @@ $l['ads_PVer'] = '5.0.3';
 $l['ads_PGUID'] = '80d9be40af59e71edb421b93e820b10f';
 $l['ads_PCompat'] = '18*';
 
-// Plugin settings
+// acp submenu
+
+
+// add ad options
+
+// do_add ad options
+
+
+
+// edit ad options
+
+// do_edit ad options
+
+
+
+// reset ad options
+
+// do_reset ad options
+
+
+// delete ad options
+
+// do_delete ad options
+
+
+
 
 ?>
