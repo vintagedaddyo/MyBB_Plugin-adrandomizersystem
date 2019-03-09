@@ -98,13 +98,13 @@ $l['ads_do_edit_flash_success'] = 'success';
 $l['ads_reset_breadcrumb'] ='Ad Randomizer system';
 $l['ads_reset_header'] ='Ad Randomizer Management system';
 
-$l['ads_reset_flash_error_notice'] = 'You mustselect an Ad fist';
+$l['ads_reset_flash_error_notice'] = 'You must select an Ad fist';
 $l['ads_reset_flash_error'] = 'error';
 
-$l['ads_reset_header'] = 'Reset Ad Veiws';
+$l['ads_reset_header'] = 'Reset Ad Views';
 $l['ads_reset_message'] = 'Are you sure you want to reset the advertisment views for ID:';
 
-$l['ads_reset_button_reset'] = 'Reset Veiws';
+$l['ads_reset_button_reset'] = 'Reset Views';
 $l['ads_reset_button_cancel'] = 'Cancel';
 
 // do_reset ad options
