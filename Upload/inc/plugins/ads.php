@@ -11,7 +11,7 @@ Release date: 16th September 2007
 edited by: vintagedaddyo
 http://community.mybb.com/user-6029.html
 
-last edited: 6th March 2019
+last edited: 8th March 2019
 
 ************************************************/
 
@@ -33,6 +33,8 @@ $plugins->add_hook("admin_load", "ads_admin");
 
 function ads_info()
 {
+	 // need to localize
+
 	return array(
 		"name" => "Ad Randomizer system",
 		"description" => "This Plugin will display an ad on the main page from a database",
@@ -50,6 +52,7 @@ function ads_info()
 function ads_install()
 {
 	global $db;
+
 	$db->query("CREATE TABLE `" . TABLE_PREFIX . "ads` (`aid` int(11) NOT NULL auto_increment,`code` text NOT NULL,`mode` int(11) NOT NULL default '0',`shown` int(11) NOT NULL default '0',`max` int(11) NOT NULL default '0',PRIMARY KEY  (`aid`)) ;");
 }
 
@@ -58,6 +61,7 @@ function ads_install()
 function ads_is_installed()
 {
 	global $db;
+
 	if ($db->table_exists("ads"))
 	{
 		return true;
@@ -89,6 +93,7 @@ function ads_deactivate()
 function ads_uninstall()
 {
 	global $db;
+
 	$db->drop_table("ads");
 }
 
@@ -97,11 +102,14 @@ function ads_uninstall()
 function ads_globals()
 {
 	global $db, $templates, $footer, $banner, $config;
+
 	$blah = "0";
 	$x = 0;
+
 	$count = $db->query("SELECT * FROM " . TABLE_PREFIX . "ads WHERE `mode` != 4 AND `mode` != 3");
 	$count2 = $db->query("SELECT * FROM " . TABLE_PREFIX . "ads");
 	$num = Array();
+
 	While ($row = $db->fetch_array($count, 'MYSQL_BOTH'))
 	{ // 'FETCH_BOTH'
 		$num[] = $row;
@@ -109,6 +117,7 @@ function ads_globals()
 
 	$ran = rand(0, count($num) - 1);
 	$random = $db->fetch_field($count, "aid", $ran);
+
 	if ($db->num_rows($count2) == "0")
 	{
 		$blah = "1";
@@ -116,11 +125,13 @@ function ads_globals()
 	}
 
 	$query = $db->query("SELECT * FROM " . TABLE_PREFIX . "ads WHERE aid='" . $random . "'");
+
 	$ads['aid'] = $db->fetch_field($query, "aid", $i);
 	$ads['code'] = $db->fetch_field($query, "code", $i);
 	$ads['mode'] = $db->fetch_field($query, "mode", $i);
 	$ads['shown'] = $db->fetch_field($query, "shown", $i);
 	$ads['max'] = $db->fetch_field($query, "max", $i);
+
 	if ($ads['aid'] == $ran and $ads['mode'] != "3" and $ads['mode'] != "4")
 	{
 		$blah = "1";
@@ -134,6 +145,7 @@ function ads_globals()
 	if ($ads['mode'] == 2)
 	{
 		$new = $ads['shown'] + 1;
+
 		if ($new < $ads['max'])
 		{
 			$db->query("UPDATE " . TABLE_PREFIX . "ads SET shown='" . $new . "' WHERE aid='" . $ads['aid'] . "'");
@@ -143,10 +155,12 @@ function ads_globals()
 			$db->query("UPDATE " . TABLE_PREFIX . "ads SET mode='4' WHERE aid='" . $ads['aid'] . "'");
 		}
 	}
+
 	else
 	if ($ads['mode'] == 1)
 	{
 		$new = $ads['shown'] + 1;
+
 		$db->query("UPDATE " . TABLE_PREFIX . "ads SET shown='" . $new . "' WHERE aid='" . $ads['aid'] . "'");
 	}
 
@@ -159,7 +173,8 @@ function ads_nav(&$sub_menu)
 {
 	global $mybb;
 
-    //if($mybb->usergroup['cancp'])
+ // need to localize
+
 	if (is_super_admin((int)$mybb->user['uid']))
 	{
 		$sub_menu['310'] = array(
@@ -176,7 +191,6 @@ function ads_actionhandler(&$actions)
 {
 	global $mybb;
 
-    //if($mybb->usergroup['cancp'])	
 	if (is_super_admin((int)$mybb->user['uid']))
 	{
 		$actions['ads'] = array(
@@ -191,8 +205,8 @@ function ads_actionhandler(&$actions)
 function ads_admin()
 {
 	global $mybb, $db, $page, $lang;
-	require_once ("../inc/functions_time.php");
 
+	require_once ("../inc/functions_time.php");
 
 	if ($page->active_action != "ads")
 	{
@@ -201,27 +215,35 @@ function ads_admin()
 
 	if ($mybb->input['add'])
 	{
-		$page->add_breadcrumb_item("Ad Randomizer system");
-		$page->output_header("Ad Randomizer Management system");
+		$page->add_breadcrumb_item("Ad Randomizer system"); // need to localize
+		$page->output_header("Ad Randomizer Management system"); // need to localize
+		
 		ads_add_form();
+
 		$page->output_footer();
+
 		exit;
 	}
+
 	elseif ($mybb->input['do_add'])
 	{
-		$page->add_breadcrumb_item("Ad Randomizer system");
-		$page->output_header("Ad Randomizer Management system");
+		$page->add_breadcrumb_item("Ad Randomizer system"); // need to localize
+		$page->output_header("Ad Randomizer Management system"); // need to localize
+
 		if (!$mybb->input['code'])
 		{
-			flash_message("You must enter the code for the Ad", 'error');
+			flash_message("You must enter the code for the Ad", 'error'); // need to localize
+
 			ads_add_form();
 		}
+
 		else
 		{
 			if ($mybb->input['max'] == "" || $mybb->input['max'] == "0")
 			{
 				$mode = 1;
 			}
+
 			else
 			{
 				$mode = 2;
@@ -229,7 +251,7 @@ function ads_admin()
 			
             if($mybb->input['max'] == '')
             {
-            $mybb->input['max'] = '0';	
+                $mybb->input['max'] = htmlspecialchars_uni('0');	
             }
 
 			$stuff = Array(
@@ -237,40 +259,50 @@ function ads_admin()
 				"max" => $mybb->input['max'],
 				"mode" => $mode
 			);
+
 			$db->insert_query("ads", $stuff);
-			flash_message("Ad added sucessfully.", 'success');
+
+			flash_message("Ad added sucessfully.", 'success'); // need to localize
 			admin_redirect("index.php?module=config/ads");
 		}
 
 		$page->output_footer();
+
 		exit;
 	}
+
 	elseif ($mybb->input['edit'])
 	{
-		$page->add_breadcrumb_item("Ad Randomizer system");
-		$page->output_header("Ad Randomizer Management system");
+		$page->add_breadcrumb_item("Ad Randomizer system"); // need to localize
+		$page->output_header("Ad Randomizer Management system"); // need to localize
+
 		if (!$mybb->input['aid'])
 		{
-			flash_message("You must select an ad to edit first", 'error');
+			flash_message("You must select an ad to edit first", 'error'); // need to localize
 			admin_redirect("index.php?module=config/ads");
 		}
+
 		else
 		{
 			ads_edit_form();
 		}
 
 		$page->output_footer();
+
 		exit;
 	}
+
 	elseif ($mybb->input['do_edit'])
 	{
-		$page->add_breadcrumb_item("Ad Randomizer system");
-		$page->output_header("Ad Randomizer Management system");
+		$page->add_breadcrumb_item("Ad Randomizer system"); // need to localize
+		$page->output_header("Ad Randomizer Management system"); // need to localize
+
 		if (!$mybb->input['code'])
 		{
-			flash_message("You must enter the code for the Ad", 'error');
+			flash_message("You must enter the code for the Ad", 'error'); // need to localize
 			ads_edit_form();
 		}
+
 		else
 		{
 			if ($mybb->input['max'] == "" || $mybb->input['max'] == "0")
@@ -284,46 +316,66 @@ function ads_admin()
 			
             if($mybb->input['max'] == '')
             {
-            $mybb->input['max'] = '0';	
+                $mybb->input['max'] = htmlspecialchars_uni('0');	
             }
-            
+
 			$stuff = Array(
 				"code" => $db->escape_string($mybb->input['code']) ,
 				"max" => $mybb->input['max'],
 				"mode" => $mode
 			);
+
 			$db->update_query("ads", $stuff, "aid = '" . $mybb->input['aid'] . "'");
+
 			$mybb->input['max'] == "0";
-			flash_message("Message with ID:" . $mybb->input['aid'] . " edited sucessfully.", 'success');
+
+			flash_message("Message with ID:" . $mybb->input['aid'] . " edited sucessfully.", 'success'); // need to localize
 			admin_redirect("index.php?module=config/ads");
 		}
 
 		$page->output_footer();
+
 		exit;
 	}
+
 	elseif ($mybb->input['reset'])
 	{
 		if (!$mybb->input['aid'])
 		{
-			flash_message("You mustselect an Ad fist", 'error');
+			flash_message("You mustselect an Ad fist", 'error'); // need to localize
 			admin_redirect("index.php?module=config/ads");
 		}
+
 		else
 		{
 			$query = $db->query("SELECT * FROM " . TABLE_PREFIX . "ads WHERE aid = '" . $mybb->input['aid'] . "'");
+
 			$message = $db->fetch_array($query);
-			$page->add_breadcrumb_item("Ad Randomizer system");
-			$page->output_header("Ad Randomizer Management system");
+
+			$page->add_breadcrumb_item("Ad Randomizer system"); // need to localize
+			$page->output_header("Ad Randomizer Management system"); // need to localize
+
 			$form = new Form("index.php?module=config/ads", "post");
+			
 			$table = new Table;
+
+             // need to localize
+
 			$table->construct_header("Reset Ad Veiws", array(
 				'class' => 'align_center',
 				'colspan' => 1
 			));
+
+             // need to localize
+
 			$table->construct_cell("Are you sure you want to the advertisment views with ID:" . $message['aid'], array(
 				'class' => 'align_center'
 			));
+
 			$table->construct_row();
+
+             // need to localize
+
 			$table->construct_cell($form->generate_hidden_field('aid', $message['aid']) . $form->generate_submit_button("Reset Views", array(
 				'name' => 'do_reset'
 			)) . " " . $form->generate_submit_button("Cancel", array(
@@ -331,39 +383,55 @@ function ads_admin()
 			)) , array(
 				'class' => 'align_center'
 			));
+
 			$table->construct_row();
+
+             // need to localize
+
 			$table->output("<center>Ad Randomizer system</center>");
+
 			$form->end();
+
 			$page->output_footer();
+
 			exit;
 		}
 	}
+
 	elseif ($mybb->input['do_reset'])
 	{
 		$db->update_query("ads", Array(
 			"shown" => "0",
 			"mode" => "2"
 		) , "aid = '" . $mybb->input['aid'] . "'");
-		flash_message("Ad views with ID:" . $mybb->input['aid'] . " reset sucessfully.", 'success');
+
+		flash_message("Ad views with ID:" . $mybb->input['aid'] . " reset sucessfully.", 'success'); // need to localize
+
 		admin_redirect("index.php?module=config/ads");
 	}
+
 	elseif ($mybb->input['disable'])
 	{
 		if ($mybb->input['aid'] == "")
 		{
-			flash_message("Ad with ID:" . $mybb->input['aid'] . " disabled sucessfully.", 'success');
+			flash_message("Ad with ID:" . $mybb->input['aid'] . " disabled sucessfully.", 'success'); // need to localize
+
 			admin_redirect("index.php?module=config/ads");
 		}
+
 		else
 		{
 			$query = $db->query("SELECT * FROM " . TABLE_PREFIX . "ads WHERE aid = '" . $mybb->input['aid'] . "'");
+
 			$message = $db->fetch_array($query);
+
 			if ($message['mode'] == "3")
 			{
 				if ($message['max'] == "0")
 				{
 					$new_mode = "1";
 				}
+
 				else
 				{
 					$new_mode = "2";
@@ -372,42 +440,64 @@ function ads_admin()
 				$db->update_query("ads", Array(
 					"mode" => $new_mode
 				) , "aid = '" . $mybb->input['aid'] . "'");
-				flash_message("Ad with ID:" . $mybb->input['aid'] . " enabled sucessfully.", 'success');
+
+				flash_message("Ad with ID:" . $mybb->input['aid'] . " enabled sucessfully.", 'success'); // need to localize
+
 				admin_redirect("index.php?module=config/ads");
 			}
+
 			else
 			{
 				$db->update_query("ads", Array(
 					"mode" => "3"
 				) , "aid = '" . $mybb->input['aid'] . "'");
-				flash_message("Ad with ID:" . $mybb->input['aid'] . " disabled sucessfully.", 'success');
+
+				flash_message("Ad with ID:" . $mybb->input['aid'] . " disabled sucessfully.", 'success'); // need to localize
+
 				admin_redirect("index.php?module=config/ads");
 			}
 		}
 	}
+
 	elseif ($mybb->input['delete'])
 	{
 		if (!$mybb->input['aid'])
 		{
-			flash_message("You mustselect an Ad fist", 'error');
+			flash_message("You mustselect an Ad fist", 'error'); // need to localize
+
 			admin_redirect("index.php?module=config/ads");
 		}
+
 		else
 		{
 			$query = $db->query("SELECT * FROM " . TABLE_PREFIX . "ads WHERE aid = '" . $mybb->input['aid'] . "'");
+
 			$message = $db->fetch_array($query);
-			$page->add_breadcrumb_item("Ad Randomizer system");
-			$page->output_header("Ad Randomizer Management system");
+
+			$page->add_breadcrumb_item("Ad Randomizer system"); // need to localize
+			$page->output_header("Ad Randomizer Management system"); // need to localize
+
 			$form = new Form("index.php?module=config/ads", "post");
+
 			$table = new Table;
+            
+            // need to localize
+
 			$table->construct_header("Delete Alert", array(
 				'class' => 'align_center',
 				'colspan' => 1
 			));
+
+            // need to localize
+
 			$table->construct_cell("Are you sure you want to delete the message with ID:" . $message['aid'], array(
 				'class' => 'align_center'
 			));
+
 			$table->construct_row();
+
+            // need to localize
+
 			$table->construct_cell($form->generate_hidden_field('aid', $message['aid']) . $form->generate_submit_button("Delete", array(
 				'name' => 'do_delete'
 			)) . " " . $form->generate_submit_button("Cancel", array(
@@ -415,57 +505,96 @@ function ads_admin()
 			)) , array(
 				'class' => 'align_center'
 			));
+
 			$table->construct_row();
+
+            // need to localize
+
 			$table->output("<center>Ad Randomizer system</center>");
+
 			$form->end();
+
 			$page->output_footer();
+
 			exit;
 		}
 	}
+
 	elseif ($mybb->input['do_delete'])
 	{
 		$db->delete_query("ads", "aid = '" . $mybb->input['aid'] . "'");
-		flash_message("Ad with ID:" . $mybb->input['aid'] . " deleted sucessfully.", 'success');
+
+		flash_message("Ad with ID:" . $mybb->input['aid'] . " deleted sucessfully.", 'success'); // need to localize
+
 		admin_redirect("index.php?module=config/ads");
 	}
+
 	else
 	{
 		$query = $db->query("SELECT * FROM " . TABLE_PREFIX . "ads");
+
 		$sql = Array();
+
 		While ($row = $db->fetch_array($query))
 		{
 			$sql[] = $row;
 		}
 
 		$ads = $sql;
-		$page->add_breadcrumb_item("Ad Randomizer system");
-		$page->output_header("Ad Randomizer Management system");
+
+		$page->add_breadcrumb_item("Ad Randomizer system"); // need to localize
+
+		$page->output_header("Ad Randomizer Management system"); // need to localize
+
 		$table = new Table;
+
+        // need to localize
+
 		$table->construct_header("Current Ads", array(
 			'class' => 'align_center',
 			'colspan' => 6
 		));
+
 		$form = new Form("index.php?module=config/ads", "post");
+        
+        // need to localize
+
 		$table->construct_cell("Ad ID", array(
 			'class' => 'align_center',
 			'width' => '65'
 		));
+
+        // need to localize
+
 		$table->construct_cell("Ad", array(
 			'class' => 'align_center'
 		));
+
+        // need to localize 
+
 		$table->construct_cell("Mode", array(
 			'class' => 'align_center',
 			'width' => '100'
 		));
+
+        // need to localize
+
 		$table->construct_cell("Number of views", array(
 			'class' => 'align_center',
 			'width' => '150'
 		));
+
+        // need to localize
+
 		$table->construct_cell("Max views", array(
 			'class' => 'align_center',
 			'width' => '150'
 		));
+
 		$table->construct_row();
+
+        // need to localize
+
 		for ($i = 0; $i <= count($ads) - 1; $i++)
 		{
 			switch ($ads[$i]['mode'])
@@ -499,6 +628,7 @@ function ads_admin()
 			{
 				$max = "&infin;";
 			}
+			
 			else
 			{
 				$max = $ads[$i]['max'];
@@ -509,24 +639,31 @@ function ads_admin()
 				'style' => $bgcolour,
 				'width' => '75'
 			));
+
 			$table->construct_cell($ads[$i]['code'], array(
 				'class' => 'align_center',
 				'style' => $bgcolour
 			));
+
 			$table->construct_cell($mode, array(
 				'class' => 'align_center',
 				'style' => $bgcolour
 			));
+
 			$table->construct_cell($ads[$i]['shown'], array(
 				'class' => 'align_center',
 				'style' => $bgcolour
 			));
+
 			$table->construct_cell($max, array(
 				'class' => 'align_center',
 				'style' => $bgcolour
 			));
+
 			$table->construct_row();
 		}
+
+        // need to localize
 
 		$table->construct_cell($form->generate_submit_button("Add", array(
 			'name' => 'add'
@@ -542,10 +679,15 @@ function ads_admin()
 			'colspan' => '6',
 			'class' => 'align_center'
 		));
+
 		$table->construct_row();
-		$table->output("<center>Ad Randomizer system</center>");
+
+		$table->output("<center>Ad Randomizer system</center>"); // need to localize
+
 		$form->end();
+
 		$page->output_footer();
+
 		exit;
 	}
 }
@@ -555,21 +697,36 @@ function ads_admin()
 function ads_Add_form($message_text = "")
 {
 	global $db, $mybb, $page;
+
 	$form = new Form("index.php?module=config/ads", "post");
-	$message_text = '<img src="your-image-path-here">';
+
+	$message_text = '<img src="your-image-path-here">'; // need to localize
+
 	$table = new Table;
+
+    // need to localize
+
 	$table->construct_header("Add Advertisment", array(
 		'class' => 'align_center',
 		'colspan' => 1
 	));
+
 	$table->construct_cell($form->generate_text_area("code", $message_text) , array(
 		'class' => 'align_center'
 	));
+
 	$table->construct_row();
+
+    // need to localize
+
 	$table->construct_cell("Maximum number of views before ad is deleted (0 for infinite)<br />" . $form->generate_text_box("max", "0") , array(
 		'class' => 'align_center'
 	));
+
 	$table->construct_row();
+
+    // need to localize
+
 	$table->construct_cell($form->generate_submit_button("Add", array(
 		'name' => 'do_add'
 	)) . " " . $form->generate_reset_button("Reset", array(
@@ -577,8 +734,11 @@ function ads_Add_form($message_text = "")
 	)) , array(
 		'class' => 'align_center'
 	));
+
 	$table->construct_row();
-	$table->output("<center>Ad Randomizer system</center>");
+
+	$table->output("<center>Ad Randomizer system</center>"); // need to localize
+
 	$form->end();
 }
 
@@ -587,22 +747,38 @@ function ads_Add_form($message_text = "")
 function ads_edit_form()
 {
 	global $db, $mybb, $page;
+
 	$query = $db->query("SELECT * FROM " . TABLE_PREFIX . "ads WHERE aid = '" . $mybb->input['aid'] . "'");
+
 	$message = $db->fetch_array($query);
+
 	$form = new Form("index.php?module=config/ads", "post");
+
 	$table = new Table;
+
+    // need to localize
+
 	$table->construct_header("Edit Advertisment", array(
 		'class' => 'align_center',
 		'colspan' => 1
 	));
+
 	$table->construct_cell($form->generate_text_area("code", $message['code']) , array(
 		'class' => 'align_center'
 	));
+
 	$table->construct_row();
+
+    // need to localize
+
 	$table->construct_cell("Maximum number of views before ad is deleted (0 for infinite)<br />" . $form->generate_text_box("max", $message['max']) , array(
 		'class' => 'align_center'
 	));
+
 	$table->construct_row();
+
+    // need to localize
+
 	$table->construct_cell($form->generate_hidden_field('aid', $message['aid']) . $form->generate_submit_button("Edit", array(
 		'name' => 'do_edit'
 	)) . " " . $form->generate_reset_button("Reset", array(
@@ -610,8 +786,11 @@ function ads_edit_form()
 	)) , array(
 		'class' => 'align_center'
 	));
+
 	$table->construct_row();
-	$table->output("<center>Ad Randomizer system</center>");
+
+	$table->output("<center>Ad Randomizer system</center>"); // need to localize
+
 	$form->end();
 }
 
