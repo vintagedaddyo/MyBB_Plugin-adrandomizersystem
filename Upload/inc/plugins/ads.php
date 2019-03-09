@@ -406,7 +406,7 @@ function ads_admin()
 
              // need to localize
 
-			$table->output("<center>{$lang->ads_reset_output}</center>");
+			$table->output("<center>".$lang->ads_table_output."</center>");
 
 			$form->end();
 
@@ -528,7 +528,7 @@ function ads_admin()
 
             // need to localize
 
-			$table->output("<center>{$lang->ads_delete_output}</center>");
+			$table->output("<center>".$lang->ads_table_output."</center>");
 
 			$form->end();
 
@@ -542,7 +542,7 @@ function ads_admin()
 	{
 		$db->delete_query("ads", "aid = '" . $mybb->input['aid'] . "'");
 
-		flash_message("Ad with ID:" . $mybb->input['aid'] . " deleted sucessfully.", 'success'); // need to localize
+		flash_message("{$lang->ads_do_delete_flash_success_title}" . $mybb->input['aid'] . "{$lang->ads_do_delete_flash_success_notice}", '{$lang->ads_do_delete_flash_success}'); // need to localize
 
 		admin_redirect("index.php?module=config/ads");
 	}
@@ -560,15 +560,15 @@ function ads_admin()
 
 		$ads = $sql;
 
-		$page->add_breadcrumb_item("Ad Randomizer system"); // need to localize
+		$page->add_breadcrumb_item("{$lang->ads_do_delete_breadcrumb}"); // need to localize
 
-		$page->output_header("Ad Randomizer Management system"); // need to localize
+		$page->output_header("{$lang->ads_do_delete_header}"); // need to localize
 
 		$table = new Table;
 
         // need to localize
 
-		$table->construct_header("Current Ads", array(
+		$table->construct_header("{$lang->ads_do_delete_current_ads}", array(
 			'class' => 'align_center',
 			'colspan' => 6
 		));
@@ -577,34 +577,34 @@ function ads_admin()
         
         // need to localize
 
-		$table->construct_cell("Ad ID", array(
+		$table->construct_cell("{$lang->ads_do_delete_add_id}", array(
 			'class' => 'align_center',
 			'width' => '65'
 		));
 
         // need to localize
 
-		$table->construct_cell("Ad", array(
+		$table->construct_cell("{$lang->ads_do_delete_ad}", array(
 			'class' => 'align_center'
 		));
 
         // need to localize 
 
-		$table->construct_cell("Mode", array(
+		$table->construct_cell("{$lang->ads_do_delete_mode}", array(
 			'class' => 'align_center',
 			'width' => '100'
 		));
 
         // need to localize
 
-		$table->construct_cell("Number of views", array(
+		$table->construct_cell("{$lang->ads_do_delete_number_views}", array(
 			'class' => 'align_center',
 			'width' => '150'
 		));
 
         // need to localize
 
-		$table->construct_cell("Max views", array(
+		$table->construct_cell("{$lang->ads_do_delete_max_views}", array(
 			'class' => 'align_center',
 			'width' => '150'
 		));
@@ -618,27 +618,27 @@ function ads_admin()
 			switch ($ads[$i]['mode'])
 			{
 			Case "1":
-				$mode = "Infinite";
+				$mode = "{$lang->ads_mode_infinite}";
 				$bgcolour = "";
 				break;
 
 			Case "2":
-				$mode = "Limited";
+				$mode = "{$lang->ads_mode_limited}";
 				$bgcolour = "";
 				break;
 
 			Case "3":
-				$mode = "Disabled";
+				$mode = "{$lang->ads_mode_disabled}";
 				$bgcolour = "background-color: #CCCCFF;";
 				break;
 
 			Case "4":
-				$mode = "Exipred";
+				$mode = "{$lang->ads_mode_expired}";
 				$bgcolour = "background-color: #FFCCCC;";
 				break;
 
 			Default:
-				$mode = "Error!";
+				$mode = "{$lang->ads_mode_error}";
 				$bgcolour = "background-color: #FF0000;";
 			}
 
@@ -683,15 +683,15 @@ function ads_admin()
 
         // need to localize
 
-		$table->construct_cell($form->generate_submit_button("Add", array(
+		$table->construct_cell($form->generate_submit_button("{$lang->ads_button_add}", array(
 			'name' => 'add'
-		)) . " " . $form->generate_submit_button("Edit", array(
+		)) . " " . $form->generate_submit_button("{$lang->ads_button_edit}", array(
 			'name' => 'edit'
-		)) . " " . $form->generate_submit_button("Disable/Enable", array(
+		)) . " " . $form->generate_submit_button("{$lang->ads_button_disable_enable}", array(
 			'name' => 'disable'
-		)) . " " . $form->generate_submit_button("Reset View", array(
+		)) . " " . $form->generate_submit_button("{$lang->ads_button_reset_view}", array(
 			'name' => 'reset'
-		)) . " " . $form->generate_submit_button("Delete", array(
+		)) . " " . $form->generate_submit_button("{$lang->ads_button_delete}", array(
 			'name' => 'delete'
 		)) , array(
 			'colspan' => '6',
@@ -700,7 +700,7 @@ function ads_admin()
 
 		$table->construct_row();
 
-		$table->output("<center>Ad Randomizer system</center>"); // need to localize
+		$table->output("<center>".$lang->ads_table_output."</center>"); // need to localize
 
 		$form->end();
 
@@ -720,13 +720,13 @@ function ads_Add_form($message_text = "")
 
 	$form = new Form("index.php?module=config/ads", "post");
 
-	$message_text = '<img src="your-image-path-here">'; // need to localize
+	$message_text = '<img src="'.$lang->ads_image_path_full.'">'; // need to localize
 
 	$table = new Table;
 
     // need to localize
 
-	$table->construct_header("Add Advertisment", array(
+	$table->construct_header("{$lang->ads_add_advertisement}", array(
 		'class' => 'align_center',
 		'colspan' => 1
 	));
@@ -739,7 +739,7 @@ function ads_Add_form($message_text = "")
 
     // need to localize
 
-	$table->construct_cell("Maximum number of views before ad is deleted (0 for infinite)<br />" . $form->generate_text_box("max", "0") , array(
+	$table->construct_cell("{$lang->ads_add_advertisement_message}" . $form->generate_text_box("max", "0") , array(
 		'class' => 'align_center'
 	));
 
@@ -747,9 +747,9 @@ function ads_Add_form($message_text = "")
 
     // need to localize
 
-	$table->construct_cell($form->generate_submit_button("Add", array(
+	$table->construct_cell($form->generate_submit_button("{$lang->ads_add_advertisement_add_button}", array(
 		'name' => 'do_add'
-	)) . " " . $form->generate_reset_button("Reset", array(
+	)) . " " . $form->generate_reset_button("{$lang->ads_add_advertisement_reset_button}", array(
 		'name' => 'reset'
 	)) , array(
 		'class' => 'align_center'
@@ -757,7 +757,7 @@ function ads_Add_form($message_text = "")
 
 	$table->construct_row();
 
-	$table->output("<center>Ad Randomizer system</center>"); // need to localize
+	$table->output("<center>".$lang->ads_table_output."</center>"); // need to localize
 
 	$form->end();
 }
@@ -780,7 +780,7 @@ function ads_edit_form()
 
     // need to localize
 
-	$table->construct_header("Edit Advertisment", array(
+	$table->construct_header("{$lang->ads_edit_advertisement}", array(
 		'class' => 'align_center',
 		'colspan' => 1
 	));
@@ -793,7 +793,7 @@ function ads_edit_form()
 
     // need to localize
 
-	$table->construct_cell("Maximum number of views before ad is deleted (0 for infinite)<br />" . $form->generate_text_box("max", $message['max']) , array(
+	$table->construct_cell("{$lang->ads_edit_advertisement_message}" . $form->generate_text_box("max", $message['max']) , array(
 		'class' => 'align_center'
 	));
 
@@ -801,9 +801,9 @@ function ads_edit_form()
 
     // need to localize
 
-	$table->construct_cell($form->generate_hidden_field('aid', $message['aid']) . $form->generate_submit_button("Edit", array(
+	$table->construct_cell($form->generate_hidden_field('aid', $message['aid']) . $form->generate_submit_button("{$lang->ads_edit_advertisement_edit_button}", array(
 		'name' => 'do_edit'
-	)) . " " . $form->generate_reset_button("Reset", array(
+	)) . " " . $form->generate_reset_button("{$lang->ads_edit_advertisement_reset_button}", array(
 		'name' => 'reset'
 	)) , array(
 		'class' => 'align_center'
@@ -811,7 +811,7 @@ function ads_edit_form()
 
 	$table->construct_row();
 
-	$table->output("<center>Ad Randomizer system</center>"); // need to localize
+	$table->output("<center>".$lang->ads_table_output."</center>"); // need to localize
 
 	$form->end();
 }

@@ -35,6 +35,10 @@ $l['ads_submenu_title'] ='Ad Rotation Manager';
 
 $l['ads_submenu_action_'] ='';
 
+// table output header
+
+$l['ads_table_output'] = 'Ad Randomizer system';
+
 // add ad options
 
 $l['ads_add_breadcrumb'] ='Ad Randomizer system';
@@ -86,8 +90,6 @@ $l['ads_reset_message'] = 'Are you sure you want to reset the advertisment views
 $l['ads_reset_button_reset'] = 'Reset Veiws';
 $l['ads_reset_button_cancel'] = 'Cancel';
 
-$l['ads_reset_outpu'] = 'Ad Randomizer system';
-
 // do_reset ad options
 
 $l['ads_do_reset_flash_reset_success_title'] = 'Ad views with ID:';
@@ -112,7 +114,7 @@ $l['ads_do_reset_flash_mode_disable_success'] = 'success';
 $l['ads_delete_breadcrumb'] ='Ad Randomizer system';
 $l['ads_delete_header'] ='Ad Randomizer Management system';
 
-$l['ads_delete_flash error_notice'] = 'You must select an Ad fist';
+$l['ads_delete_flash_error_notice'] = 'You must select an Ad fist';
 $l['ads_delete_flash_error'] = 'error';
 
 $l['ads_delete_header_alert'] = 'Delete Alert';
@@ -121,11 +123,52 @@ $l['ads_delete_message'] = 'Are you sure you want to delete the message with ID:
 $l['ads_delete_button_delete'] = 'Delete';
 $l['ads_delete_button_cancel'] = 'Cancel';
 
-$l['ads_delete_output'] = 'Ad Randomizer system';
 
 // do_delete ad options
 
+$l['ads_do_delete_breadcrumb'] ='Ad Randomizer system';
+$l['ads_do_delete_header'] ='Ad Randomizer Management system';
+
+$l['ads_do_delete_flash_success_title'] = 'Ad with ID:';
+$l['ads_do_delete_flash_success_notice'] = ' deleted sucessfully.';
+$l['ads_do_delete_flash_success'] = 'success';
+
+$l['ads_do_delete_current_ads'] = 'Current Ads';
+$l['ads_do_delete_add_id'] = 'Ad ID';
+$l['ads_do_delete_ad'] = 'Ad';
+$l['ads_do_delete_mode'] = 'Mode';
+$l['ads_do_delete_number_views'] = 'Number of views';
+$l['ads_do_delete_max_views'] = 'Max views';
 
 
+$l['ads_mode_infinite'] = 'Infinite';
+$l['ads_mode_limited'] = 'Limited';
+$l['ads_mode_disabled'] = 'Disabled';
+$l['ads_mode_expired'] = 'Expired';
+$l['ads_mode_error'] = 'Error!';
+
+$l['ads_button_add'] = 'Add';
+$l['ads_button_edit'] = 'Edit';
+$l['ads_button_disable_enable'] = 'Disable/Enable';
+$l['ads_button_reset_view'] = 'Reset View';
+$l['ads_button_delete'] = 'Delete';
+
+// plugin form add
+
+$l['ads_image_path_full'] = 'http://your-full-image-path-here';
+
+$l['ads_add_advertisement'] = 'Add Advertisment';
+$l['ads_add_advertisement_message'] = 'Maximum number of views before ad is deleted (0 for infinite)<br />';
+
+$l['ads_add_advertisement_add_button'] = 'Add';
+$l['ads_add_advertisement_reset_button'] = 'Reset';
+
+// plugin form edit
+
+$l['ads_edit_advertisement'] = 'Edit Advertisment';
+$l['ads_edit_advertisement_message'] = 'Maximum number of views before ad is deleted (0 for infinite)<br />';
+
+$l['ads_edit_advertisement_edit_button'] = 'Edit';
+$l['ads_edit_advertisement_reset_button'] = 'Reset';
 
 ?>

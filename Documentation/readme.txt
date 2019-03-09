@@ -30,9 +30,17 @@ Features:
 
 -very nifty admin panel
 
+* current completed localization support
+
+- english
+- englishgb
+
+
 To-Do:
 
--add multi-language support
+-add further multi-language support
+
+
 
 Installation:
 
