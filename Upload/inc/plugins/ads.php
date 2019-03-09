@@ -11,7 +11,7 @@ Release date: 16th September 2007
 edited by: vintagedaddyo
 http://community.mybb.com/user-6029.html
 
-last edited: 8th March 2019
+last edited: 9th March 2019
 
 ************************************************/
 
@@ -179,9 +179,9 @@ function ads_globals()
 
 function ads_nav(&$sub_menu)
 {
-	global $mybb;
+	global $mybb, $lang;
 
-    // need to localize
+    $lang->load("ads");
 
     //if($mybb->usergroup['cancp']) // uncomment for all admin
     //comment for all admin //if (is_super_admin((int)$mybb->user['uid']))
@@ -190,7 +190,7 @@ function ads_nav(&$sub_menu)
 	{
 		$sub_menu['310'] = array(
 			"id" => "ads",
-			"title" => "Ad Rotation Manager",
+			"title" => $lang->ads_submenu_title,
 			"link" => "index.php?module=config/ads"
 		);
 	}
@@ -200,8 +200,10 @@ function ads_nav(&$sub_menu)
 
 function ads_actionhandler(&$actions)
 {
-	global $mybb;
+	global $mybb, $lang;
 
+    $lang->load("ads"); // need to localize
+    
     //if($mybb->usergroup['cancp']) // uncomment for all admin
     //comment for all admin //if (is_super_admin((int)$mybb->user['uid']))
 
@@ -220,6 +222,8 @@ function ads_admin()
 {
 	global $mybb, $db, $page, $lang;
 
+    $lang->load("ads");
+
 	require_once ("../inc/functions_time.php");
 
 	if ($page->active_action != "ads")
@@ -229,8 +233,8 @@ function ads_admin()
 
 	if ($mybb->input['add'])
 	{
-		$page->add_breadcrumb_item("Ad Randomizer system"); // need to localize
-		$page->output_header("Ad Randomizer Management system"); // need to localize
+		$page->add_breadcrumb_item("{$lang->ads_add_breadcrumb}"); // need to localize
+		$page->output_header("{$lang->ads_add_header}"); // need to localize
 		
 		ads_add_form();
 
@@ -241,12 +245,12 @@ function ads_admin()
 
 	elseif ($mybb->input['do_add'])
 	{
-		$page->add_breadcrumb_item("Ad Randomizer system"); // need to localize
-		$page->output_header("Ad Randomizer Management system"); // need to localize
+		$page->add_breadcrumb_item("{$lang->ads_do_add_breadcrumb}"); // need to localize
+		$page->output_header("{$lang->ads_do_add_header}"); // need to localize
 
 		if (!$mybb->input['code'])
 		{
-			flash_message("You must enter the code for the Ad", 'error'); // need to localize
+			flash_message("{$lang->ads_do_add_flash_error_notice}", '{$lang->ads_do_add_flash_error}'); // need to localize
 
 			ads_add_form();
 		}
@@ -276,7 +280,7 @@ function ads_admin()
 
 			$db->insert_query("ads", $stuff);
 
-			flash_message("Ad added sucessfully.", 'success'); // need to localize
+			flash_message("{$lang->ads_do_add_flash_success_notice}", '{$lang->ads_do_add_flash_success}'); // need to localize
 			admin_redirect("index.php?module=config/ads");
 		}
 
@@ -287,12 +291,12 @@ function ads_admin()
 
 	elseif ($mybb->input['edit'])
 	{
-		$page->add_breadcrumb_item("Ad Randomizer system"); // need to localize
-		$page->output_header("Ad Randomizer Management system"); // need to localize
+		$page->add_breadcrumb_item("{$lang->ads_edit_breadcrumb}"); // need to localize
+		$page->output_header("{$lang->ads_edit_header}"); // need to localize
 
 		if (!$mybb->input['aid'])
 		{
-			flash_message("You must select an ad to edit first", 'error'); // need to localize
+			flash_message("{$lang->ads_edit_flash_error_notice}", '{$lang->ads_edit_flash_error}'); // need to localize
 			admin_redirect("index.php?module=config/ads");
 		}
 
@@ -308,12 +312,12 @@ function ads_admin()
 
 	elseif ($mybb->input['do_edit'])
 	{
-		$page->add_breadcrumb_item("Ad Randomizer system"); // need to localize
-		$page->output_header("Ad Randomizer Management system"); // need to localize
+		$page->add_breadcrumb_item("{$lang->ads_do_edit_breadcrumb}"); // need to localize
+		$page->output_header('{$lang->ads_do_edit_header}'); // need to localize
 
 		if (!$mybb->input['code'])
 		{
-			flash_message("You must enter the code for the Ad", 'error'); // need to localize
+			flash_message("{$lang->ads_edit_flash_code_error_notice}", '{$lang->ads_edit_flash_code_error}'); // need to localize
 			ads_edit_form();
 		}
 
@@ -343,7 +347,7 @@ function ads_admin()
 
 			$mybb->input['max'] == "0";
 
-			flash_message("Message with ID:" . $mybb->input['aid'] . " edited sucessfully.", 'success'); // need to localize
+			flash_message("{$lang->ads_do_edit_flash_success_title}" . $mybb->input['aid'] . " {$lang->ads_do_edit_flash_success_notice}", '{$lang->ads_do_edit_flash_success}'); // need to localize
 			admin_redirect("index.php?module=config/ads");
 		}
 
@@ -356,7 +360,7 @@ function ads_admin()
 	{
 		if (!$mybb->input['aid'])
 		{
-			flash_message("You mustselect an Ad fist", 'error'); // need to localize
+			flash_message("{$lang->ads_reset_flash_error_notice}", '{$lang->ads_reset_flash_error}'); // need to localize
 			admin_redirect("index.php?module=config/ads");
 		}
 
@@ -366,8 +370,8 @@ function ads_admin()
 
 			$message = $db->fetch_array($query);
 
-			$page->add_breadcrumb_item("Ad Randomizer system"); // need to localize
-			$page->output_header("Ad Randomizer Management system"); // need to localize
+			$page->add_breadcrumb_item("{$lang->ads_reset_breadcrumb}"); // need to localize
+			$page->output_header("{$lang->ads_reset_header}"); // need to localize
 
 			$form = new Form("index.php?module=config/ads", "post");
 			
@@ -375,14 +379,14 @@ function ads_admin()
 
              // need to localize
 
-			$table->construct_header("Reset Ad Veiws", array(
+			$table->construct_header("{$lang->ads_reset_header}", array(
 				'class' => 'align_center',
 				'colspan' => 1
 			));
 
              // need to localize
 
-			$table->construct_cell("Are you sure you want to the advertisment views with ID:" . $message['aid'], array(
+			$table->construct_cell("{$lang->ads_reset_message}" . $message['aid'], array(
 				'class' => 'align_center'
 			));
 
@@ -390,9 +394,9 @@ function ads_admin()
 
              // need to localize
 
-			$table->construct_cell($form->generate_hidden_field('aid', $message['aid']) . $form->generate_submit_button("Reset Views", array(
+			$table->construct_cell($form->generate_hidden_field('aid', $message['aid']) . $form->generate_submit_button("{$lang->ads_reset_button_reset}", array(
 				'name' => 'do_reset'
-			)) . " " . $form->generate_submit_button("Cancel", array(
+			)) . " " . $form->generate_submit_button("{$lang->ads_reset_button_cancel}", array(
 				'name' => 'cancel'
 			)) , array(
 				'class' => 'align_center'
@@ -402,7 +406,7 @@ function ads_admin()
 
              // need to localize
 
-			$table->output("<center>Ad Randomizer system</center>");
+			$table->output("<center>{$lang->ads_reset_output}</center>");
 
 			$form->end();
 
@@ -419,7 +423,7 @@ function ads_admin()
 			"mode" => "2"
 		) , "aid = '" . $mybb->input['aid'] . "'");
 
-		flash_message("Ad views with ID:" . $mybb->input['aid'] . " reset sucessfully.", 'success'); // need to localize
+		flash_message("{$lang->ads_do_reset_flash_reset_success_title}" . $mybb->input['aid'] . "{$lang->ads_do_reset_flash_reset_success_notice}", '{$lang->ads_do_reset_flash_reset_success}'); // need to localize
 
 		admin_redirect("index.php?module=config/ads");
 	}
@@ -428,7 +432,7 @@ function ads_admin()
 	{
 		if ($mybb->input['aid'] == "")
 		{
-			flash_message("Ad with ID:" . $mybb->input['aid'] . " disabled sucessfully.", 'success'); // need to localize
+			flash_message("{$lang->ads_do_reset_flash_disable_success_title}" . $mybb->input['aid'] . "{$lang->ads_do_reset_flash_disable_success_notice}", '{$lang->ads_do_reset_flash_disable_success}'); // need to localize
 
 			admin_redirect("index.php?module=config/ads");
 		}
@@ -455,7 +459,7 @@ function ads_admin()
 					"mode" => $new_mode
 				) , "aid = '" . $mybb->input['aid'] . "'");
 
-				flash_message("Ad with ID:" . $mybb->input['aid'] . " enabled sucessfully.", 'success'); // need to localize
+				flash_message("{$lang->ads_do_reset_flash_mode_enable_success_title}" . $mybb->input['aid'] . "{$lang->ads_do_reset_flash_mode_enable_success_notice}", '{$lang->ads_do_reset_flash_mode_enable_success}'); // need to localize
 
 				admin_redirect("index.php?module=config/ads");
 			}
@@ -466,7 +470,7 @@ function ads_admin()
 					"mode" => "3"
 				) , "aid = '" . $mybb->input['aid'] . "'");
 
-				flash_message("Ad with ID:" . $mybb->input['aid'] . " disabled sucessfully.", 'success'); // need to localize
+				flash_message("{$lang->ads_do_reset_flash_mode_disable_success_title}" . $mybb->input['aid'] . "{$lang->ads_do_reset_flash_mode_disable_success_notice}", '{$lang->ads_do_reset_flash_mode_disable_success}'); // need to localize
 
 				admin_redirect("index.php?module=config/ads");
 			}
@@ -477,7 +481,7 @@ function ads_admin()
 	{
 		if (!$mybb->input['aid'])
 		{
-			flash_message("You mustselect an Ad fist", 'error'); // need to localize
+			flash_message("{$land->ads_delete_flash_error_notice}", '{$land->ads_delete_flash_error}'); // need to localize
 
 			admin_redirect("index.php?module=config/ads");
 		}
@@ -488,8 +492,8 @@ function ads_admin()
 
 			$message = $db->fetch_array($query);
 
-			$page->add_breadcrumb_item("Ad Randomizer system"); // need to localize
-			$page->output_header("Ad Randomizer Management system"); // need to localize
+			$page->add_breadcrumb_item("{$lang->ads_delete_breadcrumb}"); // need to localize
+			$page->output_header("{$lang->ads_delete_header}"); // need to localize
 
 			$form = new Form("index.php?module=config/ads", "post");
 
@@ -497,14 +501,14 @@ function ads_admin()
             
             // need to localize
 
-			$table->construct_header("Delete Alert", array(
+			$table->construct_header("{$lang->ads_delete_header_alert}", array(
 				'class' => 'align_center',
 				'colspan' => 1
 			));
 
             // need to localize
 
-			$table->construct_cell("Are you sure you want to delete the message with ID:" . $message['aid'], array(
+			$table->construct_cell("{$lang->ads_delete_message}" . $message['aid'], array(
 				'class' => 'align_center'
 			));
 
@@ -512,9 +516,9 @@ function ads_admin()
 
             // need to localize
 
-			$table->construct_cell($form->generate_hidden_field('aid', $message['aid']) . $form->generate_submit_button("Delete", array(
+			$table->construct_cell($form->generate_hidden_field('aid', $message['aid']) . $form->generate_submit_button("{$lang->ads_delete_button_delete}", array(
 				'name' => 'do_delete'
-			)) . " " . $form->generate_submit_button("Cancel", array(
+			)) . " " . $form->generate_submit_button("{$lang->ads_delete_button_cancel}", array(
 				'name' => 'cancel'
 			)) , array(
 				'class' => 'align_center'
@@ -524,7 +528,7 @@ function ads_admin()
 
             // need to localize
 
-			$table->output("<center>Ad Randomizer system</center>");
+			$table->output("<center>{$lang->ads_delete_output}</center>");
 
 			$form->end();
 
@@ -710,7 +714,9 @@ function ads_admin()
 
 function ads_Add_form($message_text = "")
 {
-	global $db, $mybb, $page;
+	global $db, $mybb, $page, $lang;
+
+    $lang->load("ads");
 
 	$form = new Form("index.php?module=config/ads", "post");
 
@@ -760,7 +766,9 @@ function ads_Add_form($message_text = "")
 
 function ads_edit_form()
 {
-	global $db, $mybb, $page;
+	global $db, $mybb, $page, $lang;
+
+    $lang->load("ads");
 
 	$query = $db->query("SELECT * FROM " . TABLE_PREFIX . "ads WHERE aid = '" . $mybb->input['aid'] . "'");
 
