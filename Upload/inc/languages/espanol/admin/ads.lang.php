@@ -21,7 +21,7 @@ last edited: 9th March 2019
 $l['ads_PName'] = 'Anuncio del sistema de aleatorizacion';
 $l['ads_PDesc'] = 'Este sistema muestra un anuncio en la parte inferior de su foro y gira a traves de una lista de anuncios.';
 $l['ads_PWeb'] = 'http://community.mybb.com/user-6029.html';
-$l['ads_PAuth'] = 'Nitemare & updated by Vintagedaddyo';
+$l['ads_PAuth'] = 'Nitemare & Actualizado por Vintagedaddyo';
 $l['ads_PAuthSite'] = 'http://community.mybb.com/user-6029.html';
 $l['ads_PVer'] = '5.0.3';
 $l['ads_PGUID'] = '80d9be40af59e71edb421b93e820b10f';
