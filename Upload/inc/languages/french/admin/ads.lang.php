@@ -70,7 +70,7 @@ $l['ads_do_add_flash_error_notice'] = 'Vous devez entrer le code de l\'annonce';
 $l['ads_do_add_flash_error'] = 'error';
 
 $l['ads_do_add_flash_success_notice'] = 'Annonce ajoutée avec succès.';
-$l['ads_do_add_flash_success'] = 'success';
+$l['ads_do_add_flash_success'] = 'succès';
 
 // modifier les options d'annonce
 
@@ -90,7 +90,7 @@ $l['ads_do_edit_flash_code_error'] = 'error';
 
 $l['ads_do_edit_flash_success_title'] = 'Message avec ID:';
 $l['ads_do_edit_flash_success_notice'] = 'édité avec succès.';
-$l['ads_do_edit_flash_success'] = 'success';
+$l['ads_do_edit_flash_success'] = 'succès';
 
 
 // réinitialiser les options d annonce
@@ -109,21 +109,21 @@ $l['ads_reset_button_cancel'] = 'Annuler';
 
 // do_reset options d'annonce
 
-$l['ads_do_reset_flash_reset_success_title'] = 'Vues d\'annonces avec ID:';
-$l['ads_do_reset_flash_reset_success_notice'] = 'réinitialiser avec succès.';
-$l['ads_do_reset_flash_reset_success'] = 'success';
+$l['ads_do_reset_flash_reset_success_title'] = 'Vues d\'annonces avec ID: ';
+$l['ads_do_reset_flash_reset_success_notice'] = ' réinitialiser avec succès.';
+$l['ads_do_reset_flash_reset_success'] = 'succès';
 
-$l['ads_do_reset_flash_disable_success_title'] = 'Annonce avec ID:';
-$l['ads_do_reset_flash_disable_success_notice'] = 'désactivé avec succès.';
-$l['ads_do_reset_flash_disable_success'] = 'success';
+$l['ads_do_reset_flash_disable_success_title'] = 'Annonce avec ID: ';
+$l['ads_do_reset_flash_disable_success_notice'] = ' désactivé avec succès.';
+$l['ads_do_reset_flash_disable_success'] = 'succès';
 
 
-$l['ads_do_reset_flash_mode_enable_success_title'] = 'Annonce avec identifiant:';
-$l['ads_do_reset_flash_mode_enable_success_notice'] = 'activé avec succès.';
+$l['ads_do_reset_flash_mode_enable_success_title'] = 'Annonce avec identifiant: ';
+$l['ads_do_reset_flash_mode_enable_success_notice'] = ' activé avec succès.';
 $l['ads_do_reset_flash_mode_enable_success'] = 'succès';
 
-$l['ads_do_reset_flash_mode_disable_success_title'] = 'Annonce avec identifiant:';
-$l['ads_do_reset_flash_mode_disable_success_notice'] = 'désactivé avec succès.';
+$l['ads_do_reset_flash_mode_disable_success_title'] = 'Annonce avec identifiant: ';
+$l['ads_do_reset_flash_mode_disable_success_notice'] = ' désactivé avec succès.';
 $l['ads_do_reset_flash_mode_disable_success'] = 'succès';
 
 // supprimer les options d'annonce
@@ -135,7 +135,7 @@ $l['ads_delete_flash_error_notice'] = 'Vous devez sélectionner un poing publici
 $l['ads_delete_flash_error'] = 'error';
 
 $l['ads_delete_header_alert'] = 'Supprimer l\'alerte';
-$l['ads_delete_message'] = 'Êtes-vous sûr de vouloir supprimer le message avec l\'ID:';
+$l['ads_delete_message'] = 'Êtes-vous sûr de vouloir supprimer le message avec l\'ID: ';
 
 $l['ads_delete_button_delete'] = 'Supprimer';
 $l['ads_delete_button_cancel'] = 'Annuler';
