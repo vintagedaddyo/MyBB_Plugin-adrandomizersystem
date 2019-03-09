@@ -175,8 +175,9 @@ function ads_nav(&$sub_menu)
 
     // need to localize
 
-    //if($mybb->usergroup['cancp']) // in case they want all admin instead
-
+    //if($mybb->usergroup['cancp']) // uncomment for all admin
+    //comment for all admin //if (is_super_admin((int)$mybb->user['uid']))
+    
 	if (is_super_admin((int)$mybb->user['uid']))
 	{
 		$sub_menu['310'] = array(
@@ -193,7 +194,8 @@ function ads_actionhandler(&$actions)
 {
 	global $mybb;
 
-    //if($mybb->usergroup['cancp']) // in case they want all admin instead
+    //if($mybb->usergroup['cancp']) // uncomment for all admin
+    //comment for all admin //if (is_super_admin((int)$mybb->user['uid']))
 
 	if (is_super_admin((int)$mybb->user['uid']))
 	{
