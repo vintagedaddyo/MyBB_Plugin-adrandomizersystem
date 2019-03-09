@@ -35,9 +35,26 @@ $l['ads_submenu_title'] ='Ad Rotation Manager';
 
 $l['ads_submenu_action_'] ='';
 
-// table output header
+// table output header main
 
-$l['ads_table_output'] = 'Ad Randomizer system';
+$l['ads_table_output'] = 'Ad Randomizer system: Main';
+
+// table output header add
+
+$l['ads_table_output_add'] = 'Ad Randomizer system: Add';
+
+// table output header edit
+
+$l['ads_table_output_edit'] = 'Ad Randomizer system: Edit';
+
+// table output header reset
+
+$l['ads_table_output_reset'] = 'Ad Randomizer system: Reset';
+
+// table output header delete
+
+$l['ads_table_output_delete'] = 'Ad Randomizer system: Delete';
+
 
 // add ad options
 

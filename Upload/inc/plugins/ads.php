@@ -406,7 +406,7 @@ function ads_admin()
 
              // need to localize
 
-			$table->output("<center>".$lang->ads_table_output."</center>");
+			$table->output("<center>".$lang->ads_table_output_reset."</center>");
 
 			$form->end();
 
@@ -528,7 +528,7 @@ function ads_admin()
 
             // need to localize
 
-			$table->output("<center>".$lang->ads_table_output."</center>");
+			$table->output("<center>".$lang->ads_table_output_delete."</center>");
 
 			$form->end();
 
@@ -757,7 +757,7 @@ function ads_Add_form($message_text = "")
 
 	$table->construct_row();
 
-	$table->output("<center>".$lang->ads_table_output."</center>"); // need to localize
+	$table->output("<center>".$lang->ads_table_output_add."</center>"); // need to localize
 
 	$form->end();
 }
@@ -811,7 +811,7 @@ function ads_edit_form()
 
 	$table->construct_row();
 
-	$table->output("<center>".$lang->ads_table_output."</center>"); // need to localize
+	$table->output("<center>".$lang->ads_table_output_edit."</center>"); // need to localize
 
 	$form->end();
 }
