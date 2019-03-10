@@ -88,7 +88,7 @@ $l['ads_do_edit_header'] = 'Système de gestion des annonces aléatoires';
 $l['ads_do_edit_flash_code_error_notice'] = 'Vous devez entrer le code de l\'annonce';
 $l['ads_do_edit_flash_code_error'] = 'error';
 
-$l['ads_do_edit_flash_success_title'] = 'Message avec ID:';
+$l['ads_do_edit_flash_success_title'] = 'Message avec ID: ';
 $l['ads_do_edit_flash_success_notice'] = 'édité avec succès.';
 $l['ads_do_edit_flash_success'] = 'succès';
 
@@ -102,7 +102,7 @@ $l['ads_reset_flash_error_notice'] = 'Vous devez sélectionner un poing publicit
 $l['ads_reset_flash_error'] = 'error';
 
 $l['ads_reset_header'] = 'Réinitialiser les vues d\'annonce';
-$l['ads_reset_message'] = 'Êtes-vous sûr de vouloir réinitialiser les vues de la publicité pour ID:';
+$l['ads_reset_message'] = 'Êtes-vous sûr de vouloir réinitialiser les vues de la publicité pour ID: ';
 
 $l['ads_reset_button_reset'] = 'Réinitialiser les vues';
 $l['ads_reset_button_cancel'] = 'Annuler';

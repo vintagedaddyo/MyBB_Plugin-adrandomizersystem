@@ -88,7 +88,7 @@ $l['ads_do_edit_header'] = 'Sistema de gestion de aleatorizacion de anuncios';
 $l['ads_do_edit_flash_code_error_notice'] = 'Debe ingresar el codigo del anuncio';
 $l['ads_do_edit_flash_code_error'] = 'error';
 
-$l['ads_do_edit_flash_success_title'] = 'Mensaje con ID:';
+$l['ads_do_edit_flash_success_title'] = 'Mensaje con ID: ';
 $l['ads_do_edit_flash_success_notice'] = 'editado con éxito.';
 $l['ads_do_edit_flash_success'] = 'exito';
 
@@ -102,28 +102,28 @@ $l['ads_reset_flash_error_notice'] = 'Usted debe seleccionar un Puno de anuncio'
 $l['ads_reset_flash_error'] = 'error';
 
 $l['ads_reset_header'] = 'Restablecer controles de anuncios';
-$l['ads_reset_message'] = '¿Esta seguro de que desea restablecer las vistas de publicidad para ID:';
+$l['ads_reset_message'] = '¿Esta seguro de que desea restablecer las vistas de publicidad para ID: ';
 
 $l['ads_reset_button_reset'] = 'Restablecer vistas';
 $l['ads_reset_button_cancel'] = 'Cancelar';
 
 // do_reset opciones de anuncios
 
-$l['ads_do_reset_flash_reset_success_title'] = 'Vistas de anuncios con ID:';
-$l['ads_do_reset_flash_reset_success_notice'] = 'restablecer con éxito.';
+$l['ads_do_reset_flash_reset_success_title'] = 'Vistas de anuncios con ID: ';
+$l['ads_do_reset_flash_reset_success_notice'] = ' restablecer con éxito.';
 $l['ads_do_reset_flash_reset_success'] = 'exito';
 
-$l['ads_do_reset_flash_disable_success_title'] = 'Anuncio con ID:';
-$l['ads_do_reset_flash_disable_success_notice'] = 'deshabilitado con éxito.';
+$l['ads_do_reset_flash_disable_success_title'] = 'Anuncio con ID: ';
+$l['ads_do_reset_flash_disable_success_notice'] = ' deshabilitado con éxito.';
 $l['ads_do_reset_flash_disable_success'] = 'exito';
 
 
-$l['ads_do_reset_flash_mode_enable_success_title'] = 'Anuncio con ID:';
-$l['ads_do_reset_flash_mode_enable_success_notice'] = 'habilitado exitosamente.';
+$l['ads_do_reset_flash_mode_enable_success_title'] = 'Anuncio con ID: ';
+$l['ads_do_reset_flash_mode_enable_success_notice'] = ' habilitado exitosamente.';
 $l['ads_do_reset_flash_mode_enable_success'] = 'exito';
 
-$l['ads_do_reset_flash_mode_disable_success_title'] = 'Anuncio con ID:';
-$l['ads_do_reset_flash_mode_disable_success_notice'] = 'deshabilitado con éxito.';
+$l['ads_do_reset_flash_mode_disable_success_title'] = 'Anuncio con ID: ';
+$l['ads_do_reset_flash_mode_disable_success_notice'] = ' deshabilitado con éxito.';
 $l['ads_do_reset_flash_mode_disable_success'] = 'exito';
 
 // eliminar opciones de anuncios
@@ -135,7 +135,7 @@ $l['ads_delete_flash_error_notice'] = 'Debe seleccionar un Puno de anuncio';
 $l['ads_delete_flash_error'] = 'error';
 
 $l['ads_delete_header_alert'] = 'Eliminar alerta';
-$l['ads_delete_message'] = '¿Esta seguro de que desea eliminar el mensaje con ID:';
+$l['ads_delete_message'] = '¿Esta seguro de que desea eliminar el mensaje con ID: ';
 
 $l['ads_delete_button_delete'] = 'Borrar';
 $l['ads_delete_button_cancel'] = 'Cancelar';
@@ -146,8 +146,8 @@ $l['ads_delete_button_cancel'] = 'Cancelar';
 $l['ads_do_delete_breadcrumb'] = 'Anuncio del sistema de aleatorizacion';
 $l['ads_do_delete_header'] = 'Sistema de gestion de aleatorizacion de anuncios';
 
-$l['ads_do_delete_flash_success_title'] = 'Anuncio con ID:';
-$l['ads_do_delete_flash_success_notice'] = 'eliminado con exito.';
+$l['ads_do_delete_flash_success_title'] = 'Anuncio con ID: ';
+$l['ads_do_delete_flash_success_notice'] = ' eliminado con exito.';
 $l['ads_do_delete_flash_success'] = 'exito';
 
 $l['ads_do_delete_current_ads'] = 'Anuncios actuales';
