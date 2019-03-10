@@ -14,7 +14,7 @@ This ads will display a banner on your forum, at random, from a mysql database t
 
 Features:
 
--1.8.* compatable
+-1.8.* compatible
 
 -Fully automated(no modifying files required)
 
@@ -34,7 +34,9 @@ Features:
 
 - english
 - englishgb
-
+- espanol
+- french
+- italiano
 
 To-Do:
 
