@@ -172,7 +172,7 @@ $l['ads_button_delete'] = 'Elimina';
 
 // modulo di plugin aggiungi
 
-$l['ads_image_path_full'] = 'http: // your-full-image-path-here';
+$l['ads_image_path_full'] = 'http://il-tuo-full-image-path-qui';
 
 $l['ads_add_advertisement'] = 'Aggiungi pubblicità';
 $l['ads_add_advertisement_message'] = 'Numero massimo di visualizzazioni prima che l\'annuncio sia cancellato (0 per infinito) <br />';
