@@ -202,7 +202,7 @@ function ads_actionhandler(&$actions)
 {
 	global $mybb, $lang;
 
-    $lang->load("ads"); // need to localize
+    $lang->load("ads"); // localization supported
     
     //if($mybb->usergroup['cancp']) // uncomment for all admin
     //comment for all admin //if (is_super_admin((int)$mybb->user['uid']))
@@ -233,8 +233,8 @@ function ads_admin()
 
 	if ($mybb->input['add'])
 	{
-		$page->add_breadcrumb_item("{$lang->ads_add_breadcrumb}"); // need to localize
-		$page->output_header("{$lang->ads_add_header}"); // need to localize
+		$page->add_breadcrumb_item("{$lang->ads_add_breadcrumb}"); // localization supported
+		$page->output_header("{$lang->ads_add_header}"); // localization supported
 		
 		ads_add_form();
 
@@ -245,12 +245,12 @@ function ads_admin()
 
 	elseif ($mybb->input['do_add'])
 	{
-		$page->add_breadcrumb_item("{$lang->ads_do_add_breadcrumb}"); // need to localize
-		$page->output_header("{$lang->ads_do_add_header}"); // need to localize
+		$page->add_breadcrumb_item("{$lang->ads_do_add_breadcrumb}"); // localization supported
+		$page->output_header("{$lang->ads_do_add_header}"); // localization supported
 
 		if (!$mybb->input['code'])
 		{
-			flash_message("{$lang->ads_do_add_flash_error_notice}", '{$lang->ads_do_add_flash_error}'); // need to localize
+			flash_message("{$lang->ads_do_add_flash_error_notice}", '{$lang->ads_do_add_flash_error}'); // localization supported
 
 			ads_add_form();
 		}
@@ -280,7 +280,7 @@ function ads_admin()
 
 			$db->insert_query("ads", $stuff);
 
-			flash_message("{$lang->ads_do_add_flash_success_notice}", '{$lang->ads_do_add_flash_success}'); // need to localize
+			flash_message("{$lang->ads_do_add_flash_success_notice}", '{$lang->ads_do_add_flash_success}'); // localization supported
 			admin_redirect("index.php?module=config/ads");
 		}
 
@@ -291,12 +291,12 @@ function ads_admin()
 
 	elseif ($mybb->input['edit'])
 	{
-		$page->add_breadcrumb_item("{$lang->ads_edit_breadcrumb}"); // need to localize
-		$page->output_header("{$lang->ads_edit_header}"); // need to localize
+		$page->add_breadcrumb_item("{$lang->ads_edit_breadcrumb}"); // localization supported
+		$page->output_header("{$lang->ads_edit_header}"); // localization supported
 
 		if (!$mybb->input['aid'])
 		{
-			flash_message("{$lang->ads_edit_flash_error_notice}", '{$lang->ads_edit_flash_error}'); // need to localize
+			flash_message("{$lang->ads_edit_flash_error_notice}", '{$lang->ads_edit_flash_error}'); // localization supported
 			admin_redirect("index.php?module=config/ads");
 		}
 
@@ -312,12 +312,12 @@ function ads_admin()
 
 	elseif ($mybb->input['do_edit'])
 	{
-		$page->add_breadcrumb_item("{$lang->ads_do_edit_breadcrumb}"); // need to localize
-		$page->output_header('{$lang->ads_do_edit_header}'); // need to localize
+		$page->add_breadcrumb_item("{$lang->ads_do_edit_breadcrumb}"); // localization supported
+		$page->output_header('{$lang->ads_do_edit_header}'); // localization supported
 
 		if (!$mybb->input['code'])
 		{
-			flash_message("{$lang->ads_edit_flash_code_error_notice}", '{$lang->ads_edit_flash_code_error}'); // need to localize
+			flash_message("{$lang->ads_edit_flash_code_error_notice}", '{$lang->ads_edit_flash_code_error}'); // localization supported
 			ads_edit_form();
 		}
 
@@ -347,7 +347,7 @@ function ads_admin()
 
 			$mybb->input['max'] == "0";
 
-			flash_message("{$lang->ads_do_edit_flash_success_title}" . $mybb->input['aid'] . " {$lang->ads_do_edit_flash_success_notice}", '{$lang->ads_do_edit_flash_success}'); // need to localize
+			flash_message("{$lang->ads_do_edit_flash_success_title}" . $mybb->input['aid'] . " {$lang->ads_do_edit_flash_success_notice}", '{$lang->ads_do_edit_flash_success}'); // localization supported
 			admin_redirect("index.php?module=config/ads");
 		}
 
@@ -360,7 +360,7 @@ function ads_admin()
 	{
 		if (!$mybb->input['aid'])
 		{
-			flash_message("{$lang->ads_reset_flash_error_notice}", '{$lang->ads_reset_flash_error}'); // need to localize
+			flash_message("{$lang->ads_reset_flash_error_notice}", '{$lang->ads_reset_flash_error}'); // localization supported
 			admin_redirect("index.php?module=config/ads");
 		}
 
@@ -370,21 +370,21 @@ function ads_admin()
 
 			$message = $db->fetch_array($query);
 
-			$page->add_breadcrumb_item("{$lang->ads_reset_breadcrumb}"); // need to localize
-			$page->output_header("{$lang->ads_reset_header}"); // need to localize
+			$page->add_breadcrumb_item("{$lang->ads_reset_breadcrumb}"); // localization supported
+			$page->output_header("{$lang->ads_reset_header}"); // localization supported
 
 			$form = new Form("index.php?module=config/ads", "post");
 			
 			$table = new Table;
 
-             // need to localize
+             // localization supported
 
 			$table->construct_header("{$lang->ads_reset_header}", array(
 				'class' => 'align_center',
 				'colspan' => 1
 			));
 
-             // need to localize
+             // localization supported
 
 			$table->construct_cell("{$lang->ads_reset_message}" . $message['aid'], array(
 				'class' => 'align_center'
@@ -392,7 +392,7 @@ function ads_admin()
 
 			$table->construct_row();
 
-             // need to localize
+             // localization supported
 
 			$table->construct_cell($form->generate_hidden_field('aid', $message['aid']) . $form->generate_submit_button("{$lang->ads_reset_button_reset}", array(
 				'name' => 'do_reset'
@@ -404,7 +404,7 @@ function ads_admin()
 
 			$table->construct_row();
 
-             // need to localize
+             // localization supported
 
 			$table->output("<center>".$lang->ads_table_output_reset."</center>");
 
@@ -423,7 +423,7 @@ function ads_admin()
 			"mode" => "2"
 		) , "aid = '" . $mybb->input['aid'] . "'");
 
-		flash_message("{$lang->ads_do_reset_flash_reset_success_title}" . $mybb->input['aid'] . "{$lang->ads_do_reset_flash_reset_success_notice}", '{$lang->ads_do_reset_flash_reset_success}'); // need to localize
+		flash_message("{$lang->ads_do_reset_flash_reset_success_title}" . $mybb->input['aid'] . "{$lang->ads_do_reset_flash_reset_success_notice}", '{$lang->ads_do_reset_flash_reset_success}'); // localization supported
 
 		admin_redirect("index.php?module=config/ads");
 	}
@@ -432,7 +432,7 @@ function ads_admin()
 	{
 		if ($mybb->input['aid'] == "")
 		{
-			flash_message("{$lang->ads_do_reset_flash_disable_success_title}" . $mybb->input['aid'] . "{$lang->ads_do_reset_flash_disable_success_notice}", '{$lang->ads_do_reset_flash_disable_success}'); // need to localize
+			flash_message("{$lang->ads_do_reset_flash_disable_success_title}" . $mybb->input['aid'] . "{$lang->ads_do_reset_flash_disable_success_notice}", '{$lang->ads_do_reset_flash_disable_success}'); // localization supported
 
 			admin_redirect("index.php?module=config/ads");
 		}
@@ -459,7 +459,7 @@ function ads_admin()
 					"mode" => $new_mode
 				) , "aid = '" . $mybb->input['aid'] . "'");
 
-				flash_message("{$lang->ads_do_reset_flash_mode_enable_success_title}" . $mybb->input['aid'] . "{$lang->ads_do_reset_flash_mode_enable_success_notice}", '{$lang->ads_do_reset_flash_mode_enable_success}'); // need to localize
+				flash_message("{$lang->ads_do_reset_flash_mode_enable_success_title}" . $mybb->input['aid'] . "{$lang->ads_do_reset_flash_mode_enable_success_notice}", '{$lang->ads_do_reset_flash_mode_enable_success}'); // localization supported
 
 				admin_redirect("index.php?module=config/ads");
 			}
@@ -470,7 +470,7 @@ function ads_admin()
 					"mode" => "3"
 				) , "aid = '" . $mybb->input['aid'] . "'");
 
-				flash_message("{$lang->ads_do_reset_flash_mode_disable_success_title}" . $mybb->input['aid'] . "{$lang->ads_do_reset_flash_mode_disable_success_notice}", '{$lang->ads_do_reset_flash_mode_disable_success}'); // need to localize
+				flash_message("{$lang->ads_do_reset_flash_mode_disable_success_title}" . $mybb->input['aid'] . "{$lang->ads_do_reset_flash_mode_disable_success_notice}", '{$lang->ads_do_reset_flash_mode_disable_success}'); // localization supported
 
 				admin_redirect("index.php?module=config/ads");
 			}
@@ -481,7 +481,7 @@ function ads_admin()
 	{
 		if (!$mybb->input['aid'])
 		{
-			flash_message("{$land->ads_delete_flash_error_notice}", '{$land->ads_delete_flash_error}'); // need to localize
+			flash_message("{$land->ads_delete_flash_error_notice}", '{$land->ads_delete_flash_error}'); // localization supported
 
 			admin_redirect("index.php?module=config/ads");
 		}
@@ -492,21 +492,21 @@ function ads_admin()
 
 			$message = $db->fetch_array($query);
 
-			$page->add_breadcrumb_item("{$lang->ads_delete_breadcrumb}"); // need to localize
-			$page->output_header("{$lang->ads_delete_header}"); // need to localize
+			$page->add_breadcrumb_item("{$lang->ads_delete_breadcrumb}"); // localization supported
+			$page->output_header("{$lang->ads_delete_header}"); // localization supported
 
 			$form = new Form("index.php?module=config/ads", "post");
 
 			$table = new Table;
             
-            // need to localize
+            // localization supported
 
 			$table->construct_header("{$lang->ads_delete_header_alert}", array(
 				'class' => 'align_center',
 				'colspan' => 1
 			));
 
-            // need to localize
+            // localization supported
 
 			$table->construct_cell("{$lang->ads_delete_message}" . $message['aid'], array(
 				'class' => 'align_center'
@@ -514,7 +514,7 @@ function ads_admin()
 
 			$table->construct_row();
 
-            // need to localize
+            // localization supported
 
 			$table->construct_cell($form->generate_hidden_field('aid', $message['aid']) . $form->generate_submit_button("{$lang->ads_delete_button_delete}", array(
 				'name' => 'do_delete'
@@ -526,7 +526,7 @@ function ads_admin()
 
 			$table->construct_row();
 
-            // need to localize
+            // localization supported
 
 			$table->output("<center>".$lang->ads_table_output_delete."</center>");
 
@@ -542,7 +542,7 @@ function ads_admin()
 	{
 		$db->delete_query("ads", "aid = '" . $mybb->input['aid'] . "'");
 
-		flash_message("{$lang->ads_do_delete_flash_success_title}" . $mybb->input['aid'] . "{$lang->ads_do_delete_flash_success_notice}", '{$lang->ads_do_delete_flash_success}'); // need to localize
+		flash_message("{$lang->ads_do_delete_flash_success_title}" . $mybb->input['aid'] . "{$lang->ads_do_delete_flash_success_notice}", '{$lang->ads_do_delete_flash_success}'); // localization supported
 
 		admin_redirect("index.php?module=config/ads");
 	}
@@ -560,13 +560,13 @@ function ads_admin()
 
 		$ads = $sql;
 
-		$page->add_breadcrumb_item("{$lang->ads_do_delete_breadcrumb}"); // need to localize
+		$page->add_breadcrumb_item("{$lang->ads_do_delete_breadcrumb}"); // localization supported
 
-		$page->output_header("{$lang->ads_do_delete_header}"); // need to localize
+		$page->output_header("{$lang->ads_do_delete_header}"); // localization supported
 
 		$table = new Table;
 
-        // need to localize
+        // localization supported
 
 		$table->construct_header("{$lang->ads_do_delete_current_ads}", array(
 			'class' => 'align_center',
@@ -575,34 +575,34 @@ function ads_admin()
 
 		$form = new Form("index.php?module=config/ads", "post");
         
-        // need to localize
+        // localization supported
 
 		$table->construct_cell("{$lang->ads_do_delete_add_id}", array(
 			'class' => 'align_center',
 			'width' => '65'
 		));
 
-        // need to localize
+        // localization supported
 
 		$table->construct_cell("{$lang->ads_do_delete_ad}", array(
 			'class' => 'align_center'
 		));
 
-        // need to localize 
+        // localization supported 
 
 		$table->construct_cell("{$lang->ads_do_delete_mode}", array(
 			'class' => 'align_center',
 			'width' => '100'
 		));
 
-        // need to localize
+        // localization supported
 
 		$table->construct_cell("{$lang->ads_do_delete_number_views}", array(
 			'class' => 'align_center',
 			'width' => '150'
 		));
 
-        // need to localize
+        // localization supported
 
 		$table->construct_cell("{$lang->ads_do_delete_max_views}", array(
 			'class' => 'align_center',
@@ -611,7 +611,7 @@ function ads_admin()
 
 		$table->construct_row();
 
-        // need to localize
+        // localization supported
 
 		for ($i = 0; $i <= count($ads) - 1; $i++)
 		{
@@ -681,7 +681,7 @@ function ads_admin()
 			$table->construct_row();
 		}
 
-        // need to localize
+        // localization supported
 
 		$table->construct_cell($form->generate_submit_button("{$lang->ads_button_add}", array(
 			'name' => 'add'
@@ -700,7 +700,7 @@ function ads_admin()
 
 		$table->construct_row();
 
-		$table->output("<center>".$lang->ads_table_output."</center>"); // need to localize
+		$table->output("<center>".$lang->ads_table_output."</center>"); // localization supported
 
 		$form->end();
 
@@ -720,11 +720,11 @@ function ads_Add_form($message_text = "")
 
 	$form = new Form("index.php?module=config/ads", "post");
 
-	$message_text = '<img src="'.$lang->ads_image_path_full.'">'; // need to localize
+	$message_text = '<img src="'.$lang->ads_image_path_full.'">'; // localization supported
 
 	$table = new Table;
 
-    // need to localize
+    // localization supported
 
 	$table->construct_header("{$lang->ads_add_advertisement}", array(
 		'class' => 'align_center',
@@ -737,7 +737,7 @@ function ads_Add_form($message_text = "")
 
 	$table->construct_row();
 
-    // need to localize
+    // localization supported
 
 	$table->construct_cell("{$lang->ads_add_advertisement_message}" . $form->generate_text_box("max", "0") , array(
 		'class' => 'align_center'
@@ -745,7 +745,7 @@ function ads_Add_form($message_text = "")
 
 	$table->construct_row();
 
-    // need to localize
+    // localization supported
 
 	$table->construct_cell($form->generate_submit_button("{$lang->ads_add_advertisement_add_button}", array(
 		'name' => 'do_add'
@@ -757,7 +757,7 @@ function ads_Add_form($message_text = "")
 
 	$table->construct_row();
 
-	$table->output("<center>".$lang->ads_table_output_add."</center>"); // need to localize
+	$table->output("<center>".$lang->ads_table_output_add."</center>"); // localization supported
 
 	$form->end();
 }
@@ -778,7 +778,7 @@ function ads_edit_form()
 
 	$table = new Table;
 
-    // need to localize
+    // localization supported
 
 	$table->construct_header("{$lang->ads_edit_advertisement}", array(
 		'class' => 'align_center',
@@ -791,7 +791,7 @@ function ads_edit_form()
 
 	$table->construct_row();
 
-    // need to localize
+    // localization supported
 
 	$table->construct_cell("{$lang->ads_edit_advertisement_message}" . $form->generate_text_box("max", $message['max']) , array(
 		'class' => 'align_center'
@@ -799,7 +799,7 @@ function ads_edit_form()
 
 	$table->construct_row();
 
-    // need to localize
+    // localization supported
 
 	$table->construct_cell($form->generate_hidden_field('aid', $message['aid']) . $form->generate_submit_button("{$lang->ads_edit_advertisement_edit_button}", array(
 		'name' => 'do_edit'
@@ -811,7 +811,7 @@ function ads_edit_form()
 
 	$table->construct_row();
 
-	$table->output("<center>".$lang->ads_table_output_edit."</center>"); // need to localize
+	$table->output("<center>".$lang->ads_table_output_edit."</center>"); // localization supported
 
 	$form->end();
 }
