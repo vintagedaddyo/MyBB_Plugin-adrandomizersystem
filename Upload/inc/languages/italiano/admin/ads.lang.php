@@ -147,7 +147,7 @@ $l['ads_do_delete_breadcrumb'] = 'Sistema Ad Randomizer';
 $l['ads_do_delete_header'] = 'Sistema di gestione degli annunci randomizzati';
 
 $l['ads_do_delete_flash_success_title'] = 'Annuncio con ID: ';
-$l['ads_do_delete_flash_success_notice'] = 'cancellato con successo.';
+$l['ads_do_delete_flash_success_notice'] = ' cancellato con successo.';
 $l['ads_do_delete_flash_success'] = 'successo';
 
 $l['ads_do_delete_current_ads'] = 'Annunci attuali';
